@@ -1,0 +1,84 @@
+
+
+
+<!-- Header -->
+<header class="">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand" href="{% url "home" %}"><h2>Adak Blog<em>.</em></h2></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            {% if request.path == '/' %}
+            <li class="nav-item active">
+             
+              {% else %}
+              <li class="nav-item">
+                {% endif %}
+
+              <a class="nav-link" href="{% url "home" %}">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li> 
+            {% comment %} <li class="nav-item">
+              <a class="nav-link" href="about.html">About Us</a>
+            </li> {% endcomment %}
+            {% if request.path == '/blogs/' %}
+            <li class="nav-item active">
+            {% else %}
+            <li class="nav-item">
+            {% endif %}
+              <a class="nav-link" href="{% url "blog" %}">Blogs</a>
+            </li>
+            {% comment %} <li class="nav-item">
+              <a class="nav-link" href="post-details.html">Post Details</a>
+            </li> {% endcomment %}
+            {% if request.path == '/contact/' %}
+            <li class="nav-item active">
+              {% else %}
+              <li class="nav-item">
+              {% endif %}
+              <a class="nav-link" href="{% url "contact_url" %}">Contact Us</a>
+        
+
+           <li class="nav-item dropdown">
+           
+            <li class="nav-item dropdown">
+           
+            {% if request.resolver_match.url_name == 'category_blogs' %}
+        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Category
+        </a>
+        {% else %}
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Category
+        </a>
+        {% endif %}
+
+        <div class="dropdown-menu active" aria-labelledby="navbarDropdown">
+          {% for category in categorys %}
+          <a class="dropdown-item" href="{% url "category_blogs" category.slug %}">{{category.category}}</a>
+          {% endfor %}
+
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="javascript:void(0);">Register</a>
+      </li>
+           
+            <form class="form-inline my-2 my-sm-0" method="GET" action="{% url "search_blogs" %}">
+              <input class="form-control mr-sm-1 form-control-sm" type="search" placeholder="Search" aria-label="Search" name="search"  required>
+              <button class="btn btn-outline-success my-2 my-sm-0 btn-sm" class="search-collapse" type="submit">Search</button>
+            </form>
+            
+          
+
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>

@@ -1,0 +1,35 @@
+
+<div class="col-lg-6">
+    <div class="blog-post">
+      <div class="blog-thumb">
+        <img src="{{blog.banner.url}}" alt=""width="290" height="270" class="shadow-lg bg-black" >
+      </div>
+      <div class="down-content">
+        <span>{{blog.category}}</span>
+        <a href="{% url "blog_details" blog.slug %}"><h4>{{blog.title}}</h4></a>
+        <ul class="post-info">
+          <li><a href="javascript:void(0);">{{blog.user.username}}</a></li>
+          <li><a href="javascript:void(0);">{{blog.create_date}}</a></li>
+          <li><a href="javascript:void(0);">{{blog.blog_comment.all.count}} Comments</a></li>
+        </ul>
+        <a href="{% url "blog_details" blog.slug %}"> <p>{{blog.description|truncatewords_html:20|safe}}</p></a>
+        <div class="post-options">
+          <div class="row">
+            <div class="col-lg-12">
+              <ul class="post-tags">
+                <li><i class="fa fa-tags"></i></li>
+                {% if blog.tags.all.count > 0 %}
+                {% for tag in blog.tags.all %}
+
+                <li><a href="javascript:void(0)">{{tag.tags}}</a>,</li>
+                {% endfor %}
+                {% else %}
+                None
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
